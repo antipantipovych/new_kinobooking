@@ -1,0 +1,11 @@
+com\kinobooking\secure\entity\Booking.class
+com\kinobooking\secure\entity\Ticket.class
+com\kinobooking\secure\entity\FilmCinema.class
+com\kinobooking\secure\entity\Seat.class
+com\kinobooking\secure\entity\Client.class
+com\kinobooking\secure\entity\FilmHall.class
+com\kinobooking\secure\entity\Cinema.class
+com\kinobooking\secure\entity\enums\UserRoleEnum.class
+com\kinobooking\secure\entity\Seans.class
+com\kinobooking\secure\entity\Hall.class
+com\kinobooking\secure\entity\Film.class

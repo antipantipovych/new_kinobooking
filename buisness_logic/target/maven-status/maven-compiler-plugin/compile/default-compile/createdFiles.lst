@@ -1,0 +1,11 @@
+com\kinobooking\secure\dao\ClientDao.class
+com\kinobooking\secure\dao\implementations\FilmDaoImpl.class
+com\kinobooking\secure\dao\CinemaDao.class
+com\kinobooking\secure\dao\FilmDao.class
+com\kinobooking\secure\dao\implementations\SeansDaoImpl.class
+com\kinobooking\secure\exceptions\EmailExistsException.class
+com\kinobooking\secure\service\SeansDetailsService.class
+com\kinobooking\secure\dao\SeansDao.class
+com\kinobooking\secure\dao\implementations\CinemaDaoImpl.class
+com\kinobooking\secure\dao\implementations\ClientDaoImpl.class
+com\kinobooking\secure\service\ClientDetailsServiceImpl.class
