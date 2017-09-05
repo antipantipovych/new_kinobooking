@@ -2,6 +2,7 @@ package com.kinobooking.secure.dao;
 
 import com.kinobooking.secure.entity.Booking;
 import com.kinobooking.secure.entity.Ticket;
+import org.hibernate.Session;
 
 import java.util.Set;
 
@@ -11,5 +12,6 @@ import java.util.Set;
 public interface TicketDao {
     public Set<Integer> getSeatsBySeansId(int seansId);
 
-    public Ticket createTicket(int seansId, int seatId, Booking book);
+    public Ticket createTicket(int seansId, int seatId, Booking book,Session session);
+
 }

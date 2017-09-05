@@ -2,6 +2,7 @@ package com.kinobooking.secure.dao.implementations;
 
 import com.kinobooking.secure.dao.SeansDao;
 import com.kinobooking.secure.entity.Seans;
+import com.kinobooking.secure.entity.Seat;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TreeSet;
 
 /**
  * Created by Екатерина on 24.08.2017.
@@ -21,6 +23,32 @@ import java.util.Locale;
 public class SeansDaoImpl implements SeansDao {
     @Autowired
     private SessionFactory sessionFactory;
+
+    @Override
+    public List<Seat> getSeatsBySeansId(int seansId) {
+        List<Seat> seats= null;
+        Locale.setDefault(Locale.ENGLISH);
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from Seat where hall = (select hall from Seans where seansId="+ seansId+
+                ") order by seatRow");
+        System.out.println(query);
+        seats =((List<Seat>)query.list());
+        session.close();
+        return seats;
+    }
+
+    @Override
+    public TreeSet<Integer> getHallRowBySeabsId(int seansId) {
+        TreeSet<Integer> rows= null;
+        Locale.setDefault(Locale.ENGLISH);
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select seatRow from Seat where hall = (select hall from Seans where seansId="+ seansId+
+                ") order by seatRow");
+        System.out.println(query);
+        rows = new TreeSet((List<Integer>)query.list());
+        session.close();
+        return rows;
+    }
 
     @Override
     @Transactional

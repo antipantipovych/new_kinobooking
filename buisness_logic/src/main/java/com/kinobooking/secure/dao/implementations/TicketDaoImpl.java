@@ -25,18 +25,20 @@ public class TicketDaoImpl implements TicketDao{
     private SessionFactory sessionFactory;
 
     @Override
-    public Ticket createTicket(int seansId, int seatId, Booking book) {
+    public Ticket createTicket(int seansId, int seatId, Booking book, Session session) {
         Ticket ticket =new Ticket();
-        Session session = sessionFactory.getCurrentSession();
-        Query q1= session.createQuery("select from Seans where seansId="+ seansId);
+        //Session session = sessionFactory.getCurrentSession();
+        Query q1= session.createQuery(" from Seans where seansId="+ seansId);
         Seans seans=(Seans)q1.uniqueResult();
+        System.out.println(seans.toShortString());
         ticket.setSeans(seans);
         ticket.setBooking(book);
         ticket.setCinema(seans.getCinema());
         ticket.setClient(book.getClient());
         ticket.setFilm(seans.getFilm());
         ticket.setHall(seans.getHall());
-        Query q2= session.createQuery("select from Seat where seatId="+seatId);
+        Query q2= session.createQuery("from Seat where seatId="+seatId);
+        System.out.println((Seat)q2.uniqueResult());
         ticket.setSeat((Seat)q2.uniqueResult());
         session.save(ticket);
         return ticket;
@@ -46,7 +48,7 @@ public class TicketDaoImpl implements TicketDao{
     public Set<Integer> getSeatsBySeansId(int seansId) {
         Set<Integer> seats=null;
         Locale.setDefault(Locale.ENGLISH);
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         Query query= session.createQuery("select seat.seatId from Ticket  where seans=(from Seans where seansId="+ seansId+")");
         System.out.println(query);
         seats=new HashSet<>((List<Integer>)query.list());

@@ -46,7 +46,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
     </form>
      <center>
-        <p><a class="btn btn-lg btn-success" href="<c:url value="/registr" />" role="button">Зарегистрироваться</a></p>
+        <p><a class="btn btn-lg btn-success btn-block" href="<c:url value="/registr" />" role="button">Зарегистрироваться</a></p>
      </center>
 </div>
 

@@ -11,7 +11,8 @@ import java.util.Set;
 public class Booking {
     @Id
     @Column(name="booking_id", unique = true, nullable = false)
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="booking_seq")
+    @SequenceGenerator(name="booking_seq", sequenceName="booking_seq", allocationSize=1)
     private int bookingId;
     @Column(name="booking_price")
     private int price;

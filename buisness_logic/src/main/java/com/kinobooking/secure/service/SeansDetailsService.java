@@ -3,12 +3,15 @@ package com.kinobooking.secure.service;
 import com.kinobooking.secure.dao.CinemaDao;
 import com.kinobooking.secure.dao.FilmDao;
 import com.kinobooking.secure.dao.SeansDao;
+import com.kinobooking.secure.dao.TicketDao;
 import com.kinobooking.secure.entity.Seans;
+import com.kinobooking.secure.entity.Seat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Екатерина on 24.08.2017.
@@ -21,10 +24,16 @@ public class SeansDetailsService {
     private CinemaDao cinemaDao;
     @Autowired
     private SeansDao seansDao;
+    @Autowired
+    private TicketDao ticketDao;
 
-
+    public List<Seat> getSeats(int seansId){return seansDao.getSeatsBySeansId(seansId);}
+    public Set<Integer> getHallRows(int seansId){return seansDao.getHallRowBySeabsId(seansId);}
     public List<String> loadFilmNames(){
         return filmDao.getFilmNames();
+    }
+    public Set<Integer> getBlockedSeats(int seansId){
+        return ticketDao.getSeatsBySeansId(seansId);
     }
 
     public List<String> loadCinemaNames(){

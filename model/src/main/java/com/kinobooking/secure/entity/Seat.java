@@ -17,8 +17,6 @@ public class Seat {
     private int seatRow;
     @Column(name="seat_num", nullable = false)
     private int seatNum;
-    @Column(name="seat_avail", nullable = false)
-    private int seatAvail;
     @ManyToOne
     @JoinColumn(name="hall_id",nullable = false)
     private Hall hall;
@@ -28,19 +26,17 @@ public class Seat {
     public Seat() {
     }
 
-    public Seat(int seatId, int seatRow, int seatNum, int seatAvail, Hall hall) {
+    public Seat(int seatId, int seatRow, int seatNum, Hall hall) {
         this.seatId = seatId;
         this.seatRow = seatRow;
         this.seatNum = seatNum;
-        this.seatAvail = seatAvail;
         this.hall = hall;
     }
 
-    public Seat(int seatId, int seatNum, int seatRow, int seatAvail, Hall hall, Set<Ticket> tickets) {
+    public Seat(int seatId, int seatNum, int seatRow, Hall hall, Set<Ticket> tickets) {
         this.seatId = seatId;
         this.seatNum = seatNum;
         this.seatRow = seatRow;
-        this.seatAvail = seatAvail;
         this.hall = hall;
         this.tickets = tickets;
     }
@@ -75,14 +71,6 @@ public class Seat {
 
     public void setSeatNum(int seatNum) {
         this.seatNum = seatNum;
-    }
-
-    public int getSeatAvail() {
-        return seatAvail;
-    }
-
-    public void setSeatAvail(int seatAvail) {
-        this.seatAvail = seatAvail;
     }
 
 

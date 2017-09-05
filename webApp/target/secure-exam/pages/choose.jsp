@@ -73,6 +73,7 @@
                         <form:radiobutton path="seansId" value="${s.seansId}"/>${s.getStringTime()}
                     </c:if>
                 </c:forEach>
+                <p/>
             </c:forEach>
         </form:form>
 </div>
