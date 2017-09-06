@@ -46,7 +46,20 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     @Transactional
-    public void delete(Client client){entityManager.remove(client);}
+    public void delete(Client client){
+        try {
+            Locale.setDefault(Locale.ENGLISH);
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
+            session.delete(client);
+            session.flush();
+            session.getTransaction().commit();
+            // System.out.println(client.toString());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
     @Override
     @Transactional
@@ -58,12 +71,29 @@ public class ClientDaoImpl implements ClientDao {
             session.save(client);
             session.flush();
             session.getTransaction().commit();
-            System.out.println(client.toString());
+           // System.out.println(client.toString());
         }
         catch(Exception e){
             e.printStackTrace();
         }
         return client;
+    }
+
+    @Override
+    public boolean updateClient(Client client) {
+        try {
+            Locale.setDefault(Locale.ENGLISH);
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
+            session.update(client);
+            session.flush();
+            session.getTransaction().commit();
+         //   System.out.println(client.toString());
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
     }
 
     @Transactional

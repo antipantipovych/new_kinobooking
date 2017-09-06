@@ -32,8 +32,9 @@ public class SchemaController {
 
     @RequestMapping( method = RequestMethod.GET)
     public String showSchema(@ModelAttribute("seans") SeansDto seans,Model model){
-        initSeatSet(seans,model);
-        System.out.println("here");
+        model.addAttribute("rows", initRows(seans));
+        model.addAttribute("seats",initSeats(seans));
+        model.addAttribute("blockedSeats",initBlockedSeats(seans));
         return "choose/schema";
     }
 
@@ -41,32 +42,43 @@ public class SchemaController {
     @RequestMapping(method = RequestMethod.POST )
     public String findBook(@Valid @ModelAttribute("seans") SeansDto seans, BindingResult result, ModelMap model, Authentication authentication){
         model.addAttribute("seatsForBook", seans.getSeatsForBook());
-        if(seans.getSeatsForBook().size()==0) {
-            result.rejectValue("seatsForBook", "error.seans", "Seats should be choosed");
-            return "redirect:/choose/schema";
+        model.addAttribute("seansId",seans.getSeansId());
+        model.addAttribute("rows", initRows(seans));
+        model.addAttribute("seats",initSeats(seans));
+        model.addAttribute("blockedSeats",initBlockedSeats(seans));
+        if(seans.getSeatsForBook()==null) {
+            result.rejectValue("", "error.seans", "Seats should be choosed");
+            return "choose/schema";
         }
         System.out.println(authentication.getName());
         try {
             ticketDetailsService.createTickets(seans.getSeansId(), seans.getSeatsForBook(), authentication.getName());
         }
         catch(NotAvailSeatException e){
-            result.rejectValue("seatsForBook", "error.seans", "Seats are not availed");
-            return "redirect:/choose/schema";
+            result.rejectValue("", "error.seans", "Ooops, somebody was faster..");
+            seans.setSeatsForBook(null);
+            model.addAttribute("seatsForBook",seans.getSeatsForBook());
+            return "choose/schema";
         }
       return "redirect:/choose/schema";
     }
 
-    public void initSeatSet(SeansDto seansDto,Model model ){
+
+    public Set<Integer> initRows(SeansDto seansDto){
         Set<Integer> rows=null;
         rows=seansDetailsService.getHallRows(seansDto.getSeansId());
-        System.out.println("hello");
-        for(Integer i: rows){
-            System.out.println(i);
-        }
-        model.addAttribute("rows", rows);
-        List<Seat> seats= seansDetailsService.getSeats(seansDto.getSeansId());
-        model.addAttribute("seats", seats);
-        Set<Integer> blockedSeats = seansDetailsService.getBlockedSeats(seansDto.getSeansId());
-        model.addAttribute("blockedSeats", blockedSeats);
+        return rows;
+    }
+
+    public List<Seat> initSeats(SeansDto seansDto){
+        List<Seat> seats=null;
+        seats= seansDetailsService.getSeats(seansDto.getSeansId());
+        return seats;
+    }
+
+    public Set<Integer> initBlockedSeats(SeansDto seansDto){
+        Set<Integer> blockedSeats= null;
+        blockedSeats = seansDetailsService.getBlockedSeats(seansDto.getSeansId());
+        return blockedSeats;
     }
 }

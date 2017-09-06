@@ -15,11 +15,11 @@ public class Booking {
     @SequenceGenerator(name="booking_seq", sequenceName="booking_seq", allocationSize=1)
     private int bookingId;
     @Column(name="booking_price")
-    private int price;
+    private Integer price;
     @ManyToOne
     @JoinColumn(name="client_id", nullable = false)
     private Client client;
-    @OneToMany(mappedBy = "booking")
+    @OneToMany(mappedBy = "booking", cascade = {CascadeType.REMOVE})
     private Set<Ticket> tickets;
 
     public Booking() {

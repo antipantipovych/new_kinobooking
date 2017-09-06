@@ -27,10 +27,10 @@ public class Client {
     @Column(name="email", nullable = false, length = 50)
     private String email;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = {CascadeType.REMOVE})
     private Set<Ticket> tickets;
 
-    @OneToMany(mappedBy="client")
+    @OneToMany(mappedBy="client",cascade = {CascadeType.REMOVE})
     private Set<Booking> bookings;
 
     public Client(String password, String lastName, String email, String firstName) {

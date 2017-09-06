@@ -13,16 +13,15 @@ import javax.validation.constraints.Size;
 public class ClientDto {
 
     @NotEmpty(message="Password can not be empty")
-    //@NotEmpty
+
     @Size(min=6, message = "Password must be more then 6 chars")
 
     private String password;
     @NotEmpty(message="First name can not be empty")
-    //@NotEmpty
+
 
     private String firstName;
     @NotEmpty(message="Last name can not be empty")
-    //@NotEmpty
 
     private String lastName;
     @Pattern(regexp = "^(?:[a-zA-Z0-9_'^&/+-])+(?:\\.(?:[a-zA-Z0-9_'^&/+-])+)" +
@@ -30,12 +29,12 @@ public class ClientDto {
             "{3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)" +
             "+(?:[a-zA-Z]){2,}\\.?)$",
             message = "Not proper email")
-    //@Email
+
     @NotEmpty(message="Email can not be empty")
-   // @NotEmpty
+
     private String email;
     @NotEmpty(message="Password can not be empty")
-    //@NotEmpty
+
     private String confirmPass;
 
     public String getConfirmPass() {

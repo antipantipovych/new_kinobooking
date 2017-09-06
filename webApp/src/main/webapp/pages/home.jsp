@@ -42,6 +42,7 @@
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                 <p>Ваш логин: <sec:authentication property="principal.username" /></p>
+                <p><a class="btn btn-lg btn-primary" href="<c:url value="/account" />" role="button">Личный кабинет</a></p>
                 <p><a class="btn btn-lg btn-success" href="<c:url value="/choose" />" role="button">Выбрать сеанс</a></p>
                 <p><a class="btn btn-lg btn-danger" href="<c:url value="/logout" />" role="button">Выйти</a></p>
 

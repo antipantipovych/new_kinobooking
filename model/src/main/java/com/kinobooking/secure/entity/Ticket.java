@@ -14,7 +14,7 @@ public class Ticket {
     @SequenceGenerator(name="ticket_seq1", sequenceName="ticket_seq1", allocationSize=1)
     private int ticketId;
     @Column(name="ticket_price")
-    private int price;
+    private Integer price;
     @ManyToOne
     @JoinColumn(name="client_id", nullable = false)
     private Client client;

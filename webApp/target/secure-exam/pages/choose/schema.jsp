@@ -31,23 +31,23 @@
     <div class="container" style="width: 700px;">
         <h2 class="form-heading">Выберите места</h2>
         <form:form method="post"  modelAttribute="seans">
-
-            <strong > Экран </strong>
+            <font color="red">
+                <form:errors path="" cssClass="error"/>
+            </font>
+            <p><strong > Экран </strong></p>
             <c:forEach items="${rows}" var="r">
                 <p><output>${r.intValue()} РЯД:    </output>
-                <font color="red">
-                    <form:errors path="seatsForBook" cssClass="error"/>
-                </font>
+
                 <c:forEach items="${seats}" var="s">
                     <c:if test="${s.seatRow eq r.intValue()}">
                         <c:if test="${blockedSeats.contains(s.seatId)}">
-                            <font color= red>
-                                <form:checkbox path="seatsForBook" disabled="disabled" value="${s.seatId}"/>${s.seatNum}
+                            <font color= "fuchsia">
+                                <form:checkbox path="seatsForBook"  disabled="true" value="${s.seatId}"/>${s.seatNum}
                                 <output>   </output>
                             </font>
                         </c:if>
                         <c:if test="${! blockedSeats.contains(s.seatId)}">
-                            <font color= green>
+                            <font color= "green">
                                 <form:checkbox path="seatsForBook"  value="${s.seatId}"/>${s.seatNum}
                                 <output>   </output>
                             </font>
@@ -57,11 +57,11 @@
                 </p>
             </c:forEach>
 
-            <font color="red">
-                <p><output> занято </output></p>
+            <font color="fuchsia">
+                <p><output> места уже заняты </output></p>
             </font>
             <font color="green">
-                <p><output> свободно </output></p>
+                <p><output> места свободны </output></p>
             </font>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Забронировать</button>
         </form:form>

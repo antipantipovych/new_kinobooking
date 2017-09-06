@@ -13,4 +13,5 @@ public interface ClientDao {
     Client save (Client client) ;
     Client getClient(String login);
     Client registerNewClientAccount(Client client)throws EmailExistsException;
+    boolean updateClient(Client client);
 }
