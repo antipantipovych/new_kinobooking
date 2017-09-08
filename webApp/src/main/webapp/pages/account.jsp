@@ -33,10 +33,26 @@
             <font color="red">
                <form:errors path="*" cssClass="error"/>
             </font>
-            <p> Логин</p> <p><form:input type="text" path="email" disabled="true"/></p>
-            <p> Фамилия</p> <p> <form:input type="text" path="lastName"/></p>
-            <p> Имя </p> <p><form:input type="text" path="firstName"/></p>
-            <button class="btn btn-lg btn-success" name="change" type="submit">Сохранить изменения</button>
+            <p> Логин</p> <p><form:input type="text"  class="form-control" path="email" disabled="true"/></p>
+            <p> Фамилия</p> <p> <form:input type="text" class="form-control" path="lastName"/></p>
+            <p> Имя </p> <p><form:input type="text" class="form-control" path="firstName"/></p>
+            <p> Изменить пароль:</p>
+            <p> Текущий пароль</p>
+            <p><form:password class="form-control"  path="oldPassword"/></p>
+            <font color="red">
+                <p><form:errors path="oldPassword" cssClass="error"/></p>
+            </font>
+            <p> Новый пароль</p>
+            <p><form:password class="form-control"  path="newPassword"/></p>
+            <font color="red">
+               <p> <form:errors path="newPassword" cssClass="error"/></p>
+            </font>
+            <p> Подтвердить пароль</p>
+            <p><form:password class="form-control"  path="confirmPassword"/></p>
+            <font color="red">
+                <p><form:errors path="confirmPassword" cssClass="error"/></p>
+            </font>
+            <button class="btn btn-lg btn-success" name="change" type="submit">Сохранить все изменения</button>
             <p/>
             <p><button class="btn btn-lg btn-danger" name="delete" type="submit">Удалить аккаунт</button></p>
         </form:form>

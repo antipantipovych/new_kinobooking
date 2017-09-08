@@ -27,6 +27,7 @@ public class TicketDetailsService {
 
     @Autowired
     BookingDao bookingDao;
+
     @Autowired
     ClientDao clientDao;
 

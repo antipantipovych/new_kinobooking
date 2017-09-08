@@ -36,8 +36,16 @@
             <p> Логин</p> <p><form:input type="text" path="email" disabled="true"/></p>
             <p> Фамилия</p> <p> <form:input type="text" path="lastName"/></p>
             <p> Имя </p> <p><form:input type="text" path="firstName"/></p>
-            <button class="btn btn-lg btn-success" name="change" type="submit">Сохранить изменения</button>
-            <button class="btn btn-lg btn-danger" name="delete" type="submit">Удалить аккаунт</button>
+            <p> Изменить пароль:</p>
+            <p> Текущий пароль</p>
+            <p><form:password class="form-control"  path="oldPassword"/></p>
+            <p> Новый пароль</p>
+            <p><form:password class="form-control"  path="newPassword"/></p>
+            <p> Подтвердить пароль</p>
+            <p><form:password class="form-control"  path="confirmPassword"/></p>
+            <button class="btn btn-lg btn-success" name="change" type="submit">Сохранить все изменения</button>
+            <p/>
+            <p><button class="btn btn-lg btn-danger" name="delete" type="submit">Удалить аккаунт</button></p>
         </form:form>
         <p/>
         <p><a class="btn btn-lg btn-primary" href="<c:url value="/" />" role="button">Главная страница</a></p>

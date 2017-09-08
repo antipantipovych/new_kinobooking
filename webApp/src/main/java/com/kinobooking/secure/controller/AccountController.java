@@ -4,6 +4,7 @@ import com.kinobooking.secure.dto.ChangeClientDto;
 import com.kinobooking.secure.entity.Client;
 import com.kinobooking.secure.service.ClientDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,9 @@ import javax.validation.Valid;
 public class AccountController {
     @Autowired
     ClientDetailsServiceImpl clientDetailsService;
+
+    @Autowired
+    private ShaPasswordEncoder shaPasswordEncoder;
 
     @RequestMapping( method = RequestMethod.GET)
     public String showAccount(Model model, Authentication authentication){
@@ -44,9 +48,29 @@ public class AccountController {
         }
         model.addAttribute("lastName",clientDto.getLastName());
         model.addAttribute("firstName",clientDto.getFirstName());
-
-        if(clientDetailsService.updateClient(clientDto.getLastName(),clientDto.getFirstName(),clientDto.getEmail())) {
-            result.rejectValue("", "error.user", "Updates were saved");
+        model.addAttribute("newPassword", clientDto.getNewPassword());
+        model.addAttribute("oldPassword", clientDto.getOldPassword());
+        model.addAttribute("confirmPassword", clientDto.getConfirmPassword());
+        System.out.println("! "+clientDto.getOldPassword());
+        if(clientDto.getOldPassword()==null || clientDto.getOldPassword().equals("") ) {
+            if (clientDetailsService.updateClient(clientDto.getLastName(), clientDto.getFirstName(), clientDto.getEmail())) {
+                result.rejectValue("", "error.user", "Updates were saved");
+            }
+        }
+        else{
+            if(shaPasswordEncoder.encodePassword(clientDto.getOldPassword(),"").equals(clientDetailsService.getClient(authentication.getName()).getPassword())){
+                if(clientDto.getNewPassword().length()>=6) {
+                    if (clientDto.getNewPassword().equals(clientDto.getConfirmPassword())) {
+                        if (clientDetailsService.updateClient(clientDto.getLastName(), clientDto.getFirstName(), clientDto.getEmail(),
+                        shaPasswordEncoder.encodePassword(clientDto.getNewPassword(),""))){
+                            result.rejectValue("", "error.user", "Updates were saved");
+                        }
+                    }
+                    else result.rejectValue("confirmPassword", "error.user", "Passwords do not match");
+                }
+                else result.rejectValue("newPassword", "error.user", "Password should be 6 letters min");
+            }
+            else result.rejectValue("oldPassword", "error.user", "Not correct Password");
         }
         return "account";
     }

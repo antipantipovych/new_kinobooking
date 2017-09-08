@@ -54,6 +54,14 @@ public class ClientDetailsServiceImpl implements UserDetailsService {
         return clientDao.updateClient(client);
     }
 
+    public boolean updateClient(String lastName, String firstName, String email, String password){
+        Client client= clientDao.getClient(email);
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setPassword(password);
+        return clientDao.updateClient(client);
+    }
+
     public void deleteClient(String email){
         Client client= clientDao.getClient(email);
         clientDao.delete(client);
