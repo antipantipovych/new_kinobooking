@@ -1,4 +1,5 @@
 com\kinobooking\secure\controller\SchemaController.class
+com\kinobooking\secure\dto\BookingDto.class
 com\kinobooking\secure\config\SecurityConfig.class
 com\kinobooking\secure\controller\RegistrController.class
 com\kinobooking\secure\config\WebAppConfig.class
@@ -12,3 +13,4 @@ com\kinobooking\secure\validator\PasswordMatchesValidator.class
 com\kinobooking\secure\controller\ChooseController.class
 com\kinobooking\secure\config\Initializer.class
 com\kinobooking\secure\dto\SeansDto.class
+com\kinobooking\secure\controller\BookingsController.class

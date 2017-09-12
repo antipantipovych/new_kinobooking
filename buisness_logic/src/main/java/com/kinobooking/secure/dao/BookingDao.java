@@ -9,4 +9,5 @@ import org.hibernate.Session;
  */
 public interface BookingDao {
     public Booking createBook(Client client, Session session);
+    public void delete(int bookId);
 }

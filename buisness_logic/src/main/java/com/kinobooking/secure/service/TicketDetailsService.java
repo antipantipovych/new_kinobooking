@@ -62,5 +62,9 @@ public class TicketDetailsService {
 
 
     }
+
+    public void deleteBook(int bookId){
+        bookingDao.delete(bookId);
+    }
 }
 

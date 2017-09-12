@@ -60,7 +60,7 @@ public class SchemaController {
             model.addAttribute("seatsForBook",seans.getSeatsForBook());
             return "choose/schema";
         }
-      return "redirect:/choose/schema";
+      return "redirect:/bookings";
     }
 
 

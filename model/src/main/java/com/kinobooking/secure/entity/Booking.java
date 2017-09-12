@@ -19,7 +19,7 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name="client_id", nullable = false)
     private Client client;
-    @OneToMany(mappedBy = "booking", cascade = {CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "booking", cascade = {CascadeType.REMOVE})
     private Set<Ticket> tickets;
 
     public Booking() {

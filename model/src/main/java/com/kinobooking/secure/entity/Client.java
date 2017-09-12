@@ -30,7 +30,7 @@ public class Client {
     @OneToMany(mappedBy = "client", cascade = {CascadeType.REMOVE})
     private Set<Ticket> tickets;
 
-    @OneToMany(mappedBy="client",cascade = {CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.EAGER,mappedBy="client",cascade = {CascadeType.REMOVE})
     private Set<Booking> bookings;
 
     public Client(String password, String lastName, String email, String firstName) {
