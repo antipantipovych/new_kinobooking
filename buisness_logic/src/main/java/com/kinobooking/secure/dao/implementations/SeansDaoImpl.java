@@ -31,7 +31,6 @@ public class SeansDaoImpl implements SeansDao {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Seat where hall = (select hall from Seans where seansId="+ seansId+
                 ") order by seatRow");
-        System.out.println(query);
         seats =((List<Seat>)query.list());
         session.close();
         return seats;
@@ -44,7 +43,6 @@ public class SeansDaoImpl implements SeansDao {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("select seatRow from Seat where hall = (select hall from Seans where seansId="+ seansId+
                 ") order by seatRow");
-        System.out.println(query);
         rows = new TreeSet((List<Integer>)query.list());
         session.close();
         return rows;
@@ -57,7 +55,6 @@ public class SeansDaoImpl implements SeansDao {
         Locale.setDefault(Locale.ENGLISH);
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from Seans where seans_3D = " + i+" and seansDate >= (select sysdate from dual) order by seansDate, cinema_id, film_id ");
-        System.out.println(query);
         list = (List<Seans>)query.list();
         session.close();
         return list;

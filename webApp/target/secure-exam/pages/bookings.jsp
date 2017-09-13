@@ -28,8 +28,11 @@
 
 <body>
     <div class="container" style="width: 700px;">
-        <form:form method="post"  modelAttribute="booking">
+        <form method="post" >
             <h2 class="form-signin-heading">Ваши брони:</h2>
+            <c:if test="${bookingList.size() eq 0}">
+               <p><output>У вас нет бронирований </output></p>
+            </c:if>
             <c:forEach items="${bookingList}" var="b">
                 <p><output> Бронирование № ${b.bookingId} </output></p>
                 <c:forEach items="${b.tickets}" var="t">
@@ -41,6 +44,7 @@
                 <p><button class="btn btn-lg btn-danger" value="${b.bookingId}" name="delete" type="submit">Удалить Бронирование</button></p>
                 <p>-----------------------------------------------------------</p>
             </c:forEach>
-        </form:form>
+            <p><a class="btn btn-lg btn-success" href="<c:url value="/choose" />" role="button">Выбрать сеанс</a></p>
+        </form>
     </div>
 </body>

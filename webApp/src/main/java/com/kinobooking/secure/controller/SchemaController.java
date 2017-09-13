@@ -50,7 +50,6 @@ public class SchemaController {
             result.rejectValue("", "error.seans", "Seats should be choosed");
             return "choose/schema";
         }
-        System.out.println(authentication.getName());
         try {
             ticketDetailsService.createTickets(seans.getSeansId(), seans.getSeatsForBook(), authentication.getName());
         }

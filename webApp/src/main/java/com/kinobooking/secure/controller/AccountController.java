@@ -51,7 +51,6 @@ public class AccountController {
         model.addAttribute("newPassword", clientDto.getNewPassword());
         model.addAttribute("oldPassword", clientDto.getOldPassword());
         model.addAttribute("confirmPassword", clientDto.getConfirmPassword());
-        System.out.println("! "+clientDto.getOldPassword());
         if(clientDto.getOldPassword()==null || clientDto.getOldPassword().equals("") ) {
             if (clientDetailsService.updateClient(clientDto.getLastName(), clientDto.getFirstName(), clientDto.getEmail())) {
                 result.rejectValue("", "error.user", "Updates were saved");

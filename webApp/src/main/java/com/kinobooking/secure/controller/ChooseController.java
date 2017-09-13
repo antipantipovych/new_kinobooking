@@ -38,7 +38,6 @@ public class ChooseController {
 
     @RequestMapping(method = RequestMethod.POST, params="book" )
     public String findBook(HttpServletRequest request, @Valid @ModelAttribute("seans") SeansDto seans, BindingResult result, ModelMap model){
-        System.out.println(seans.toString());
         if(result.hasErrors()){
             return "choose";
         }
@@ -53,10 +52,8 @@ public class ChooseController {
         //model.put("seansDate",date);
         model.addAttribute("filmName", seans.getFilmName());
         model.addAttribute("cinemaName", seans.getCinemaName());
-       // System.out.println(seans.getSeansDate());
         if(!date.before(new Date())){seans.setSeansDate(date);}
         model.addAttribute("threeD", seans.isThreeD());
-        //System.out.println(seans.getFilmName()+" "+seans.getCinemaName()+" "+seans.getSeansDate()+" "+seans.isThreeD());
         List<Seans> list =seansDetailsService.findSeanses(seans.getFilmName(),seans.getCinemaName(),seans.getSeansDate(),seans.isThreeD());
         model.addAttribute("shortSeansNames",initShortSeansNames(list));
         model.addAttribute("listOfSeanses", list);
@@ -89,7 +86,6 @@ public class ChooseController {
 
     public Set<String> initShortSeansNames(List<Seans> seanses){
         Set<String> set= new TreeSet<>();
-        //set=null;
         for(Seans c: seanses){
             set.add(c.toShortString());
 

@@ -30,7 +30,6 @@ public class TicketDaoImpl implements TicketDao{
         //Session session = sessionFactory.getCurrentSession();
         Query q1= session.createQuery(" from Seans where seansId="+ seansId);
         Seans seans=(Seans)q1.uniqueResult();
-        System.out.println(seans.toShortString());
         ticket.setSeans(seans);
         ticket.setBooking(book);
         ticket.setCinema(seans.getCinema());
@@ -38,7 +37,6 @@ public class TicketDaoImpl implements TicketDao{
         ticket.setFilm(seans.getFilm());
         ticket.setHall(seans.getHall());
         Query q2= session.createQuery("from Seat where seatId="+seatId);
-        System.out.println((Seat)q2.uniqueResult());
         ticket.setSeat((Seat)q2.uniqueResult());
         session.save(ticket);
         return ticket;
@@ -50,7 +48,6 @@ public class TicketDaoImpl implements TicketDao{
         Locale.setDefault(Locale.ENGLISH);
         Session session = sessionFactory.openSession();
         Query query= session.createQuery("select seat.seatId from Ticket  where seans=(from Seans where seansId="+ seansId+")");
-        System.out.println(query);
         seats=new HashSet<>((List<Integer>)query.list());
         return seats;
     }

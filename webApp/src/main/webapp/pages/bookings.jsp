@@ -28,7 +28,7 @@
 
 <body>
     <div class="container" style="width: 700px;">
-        <form:form method="post"  modelAttribute="booking">
+        <form method="post" >
             <h2 class="form-signin-heading">Ваши брони:</h2>
             <c:if test="${bookingList.size() eq 0}">
                <p><output>У вас нет бронирований </output></p>
@@ -45,6 +45,6 @@
                 <p>-----------------------------------------------------------</p>
             </c:forEach>
             <p><a class="btn btn-lg btn-success" href="<c:url value="/choose" />" role="button">Выбрать сеанс</a></p>
-        </form:form>
+        </form>
     </div>
 </body>

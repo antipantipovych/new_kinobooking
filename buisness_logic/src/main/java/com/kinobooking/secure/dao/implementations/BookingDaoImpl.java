@@ -34,7 +34,6 @@ public class BookingDaoImpl implements BookingDao {
             session.save(book);
         }
         catch(Exception e){
-           // System.out.println("ERRRRRRRRRRRRRRRRRRROR");
             e.printStackTrace();
         }
         return book;
@@ -51,7 +50,6 @@ public class BookingDaoImpl implements BookingDao {
             session.delete(book);
             session.flush();
             session.getTransaction().commit();
-            // System.out.println(client.toString());
         }
         catch(Exception e){
             e.printStackTrace();

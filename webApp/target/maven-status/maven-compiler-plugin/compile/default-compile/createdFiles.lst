@@ -1,5 +1,4 @@
 com\kinobooking\secure\controller\SchemaController.class
-com\kinobooking\secure\dto\BookingDto.class
 com\kinobooking\secure\config\SecurityConfig.class
 com\kinobooking\secure\controller\RegistrController.class
 com\kinobooking\secure\config\WebAppConfig.class
