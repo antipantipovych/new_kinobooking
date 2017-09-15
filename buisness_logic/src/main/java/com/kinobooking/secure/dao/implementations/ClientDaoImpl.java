@@ -9,10 +9,7 @@ import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.Locale;
 
 /**
@@ -22,13 +19,11 @@ import java.util.Locale;
 public class ClientDaoImpl implements ClientDao {
     @Autowired
     private ShaPasswordEncoder shaPasswordEncoder;
-    @PersistenceContext
-    private EntityManager entityManager;
+
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    @Transactional
     public Client getClient(String login){
         Client client= null;
         try {
@@ -45,7 +40,6 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    @Transactional
     public void delete(Client client){
         try {
             Locale.setDefault(Locale.ENGLISH);
@@ -62,7 +56,6 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    @Transactional
     public Client save(Client client){
          try {
             Locale.setDefault(Locale.ENGLISH);
@@ -95,7 +88,6 @@ public class ClientDaoImpl implements ClientDao {
         }
     }
 
-    @Transactional
     @Override
     public Client registerNewClientAccount(Client account) throws EmailExistsException {
 

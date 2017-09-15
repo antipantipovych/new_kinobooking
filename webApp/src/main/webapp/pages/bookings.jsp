@@ -28,6 +28,8 @@
 
 <body>
     <div class="container" style="width: 700px;">
+
+     <p><a class="btn btn-lg btn-primary" href="<c:url value="/" />" role="button">Главная страница</a></p>
         <form method="post" >
             <h2 class="form-signin-heading">Ваши брони:</h2>
             <c:if test="${bookingList.size() eq 0}">

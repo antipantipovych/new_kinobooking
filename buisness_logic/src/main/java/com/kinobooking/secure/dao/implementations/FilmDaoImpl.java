@@ -7,8 +7,6 @@ import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,8 +15,7 @@ import java.util.Locale;
  */
 @Repository
 public class FilmDaoImpl implements FilmDao {
-    @PersistenceContext
-    private EntityManager entityManager;
+
     @Autowired
     private SessionFactory sessionFactory;
 
